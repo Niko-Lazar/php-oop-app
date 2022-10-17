@@ -1,1 +1,1 @@
-# php-oop-blog
+# php-oop-blog-app
