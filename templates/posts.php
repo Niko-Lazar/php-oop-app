@@ -1,23 +1,23 @@
 <?php require_once 'includes/header.php' ?>
 
-<div class="container">
-    <div class="row">
-        <div class="card text-center mt-5">
-        <div class="card-header">
-            Featured
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-        <div class="card-footer text-muted">
-            2 days ago
-        </div>
-        </div>
-    </div>
-</div>
+<?php
+
+require_once 'modules/renders/Post.php';
+require_once 'modules/logic/CreatePost.php';
+
+use modules\renders\Post;
+use modules\logic\CreatePost;
+
+$post = new Post(
+    "Lazar Nikolic",
+    "my first post",
+    "There should be a lot of text here but I don't know what to write so I am writing my thought right now.",
+    "19/10/222",
+);
+
+$post->renderPost();
 
 
+?>
 
 <?php require_once 'includes/footer.php' ?>

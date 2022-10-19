@@ -13,6 +13,10 @@
                 <input type="text" class="form-control" id="lastName" placeholder="last name">
                 </div>
                 <div class="mb-3">
+                <label for="title" class="form-label">title</label>
+                <input type="text" class="form-control" id="title" placeholder="post title">
+                </div>
+                <div class="mb-3">
                 <label for="postContent" class="form-label">Post content</label>
                 <textarea class="form-control" id="postContent" rows="3"></textarea>
                 </div>
