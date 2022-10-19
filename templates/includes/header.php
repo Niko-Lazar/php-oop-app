@@ -19,10 +19,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Posts</a>
+            <a class="nav-link active" aria-current="page" href="../../index.php">Posts</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">page 1</a>
+            <a class="nav-link" href="../templates/create-post.php">Create post</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#">page 2</a>
