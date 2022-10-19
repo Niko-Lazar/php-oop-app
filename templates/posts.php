@@ -3,10 +3,8 @@
 <?php
 
 require_once 'modules/renders/Post.php';
-require_once 'modules/logic/CreatePost.php';
 
 use modules\renders\Post;
-use modules\logic\CreatePost;
 
 $post = new Post(
     "Lazar Nikolic",
