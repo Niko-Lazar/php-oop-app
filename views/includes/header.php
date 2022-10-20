@@ -22,7 +22,7 @@
             <a class="nav-link active" aria-current="page" href="../../index.php">Posts</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="../templates/create-post.php">Create post</a>
+            <a class="nav-link" href="../views/create-post.php">Create post</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#">page 2</a>

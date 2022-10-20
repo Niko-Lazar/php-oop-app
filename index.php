@@ -1,1 +1,1 @@
-<?php require_once 'templates/posts.php' ?>
+<?php require_once 'views/posts.php' ?>
