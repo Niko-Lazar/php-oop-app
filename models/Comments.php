@@ -1,6 +1,6 @@
 <?php
 
-namespace models\classes;
+namespace Models;
 
 class Comments
 {
@@ -8,7 +8,7 @@ class Comments
     
     public function __construct($postID)
     {
-        $stmt = \models\classes\Database::$mysqli->prepare("SELECT * FROM comments WHERE postID=?");
+        $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM comments WHERE postID=?");
         $stmt->bind_param("s", $postID);
         $stmt->execute();
 
@@ -19,7 +19,7 @@ class Comments
 
 
     public function deleteComment($commentID) : bool {
-        $stmt = \models\classes\Database::$mysqli->prepare("DELETE FROM comments WHERE id=?");
+        $stmt = \Models\Database::$mysqli->prepare("DELETE FROM comments WHERE id=?");
         $stmt->bind_param("s", $commentID);
         $result = $stmt->execute();
 

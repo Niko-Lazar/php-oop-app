@@ -1,6 +1,6 @@
 <?php
 
-namespace models\classes;
+namespace Models;
 
 class User
 {
@@ -12,7 +12,7 @@ class User
 
     public function __construct($token)
     {
-        $stmt = \models\classes\Database::$mysqli->prepare("SELECT * FROM users WHERE token=?");
+        $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM users WHERE token=?");
         $stmt->bind_param("s", $token);
         $stmt->execute();
 

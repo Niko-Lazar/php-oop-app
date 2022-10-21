@@ -1,6 +1,6 @@
 <?php
 
-namespace models\classes;
+namespace Models;
 
 class Posts
 {
@@ -12,7 +12,7 @@ class Posts
 
     public function __construct($userID)
     {
-        $stmt = \models\classes\Database::$mysqli->prepare("SELECT * FROM posts WHERE userID=?");
+        $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM posts WHERE userID=?");
         $stmt->bind_param("s", $userID);
         $stmt->execute();
 
@@ -22,7 +22,7 @@ class Posts
     }
 
     public function getPost($postID) {
-        $stmt = \models\classes\Database::$mysqli->prepare("SELECT * FROM posts WHERE id=?");
+        $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM posts WHERE id=?");
         $stmt->bind_param("s", $postID);
         $stmt->execute();
 

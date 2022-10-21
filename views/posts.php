@@ -2,15 +2,15 @@
 
 require_once 'vendor/autoload.php';
 
-\models\classes\Database::startConn();
+\Models\Database::startConn();
 
-$token = \models\classes\Database::firstVisit();
+$token = \Models\Database::firstVisit();
 
-$user = new \models\classes\User($token);
+$user = new \Models\User($token);
 
-$posts = new \models\classes\Posts($user->id);
+$posts = new \Models\Posts($user->id);
 
-\models\classes\Database::closeConn();
+\Models\Database::closeConn();
 
 ?>
 <?php require_once 'includes/header.php' ?>

@@ -4,19 +4,19 @@
 
 require_once '../vendor/autoload.php';
 
-\models\classes\Database::startConn();
+\Models\Database::startConn();
 
 $postID = $_GET['id'];
 
-$token = \models\classes\Database::firstVisit();
+$token = \Models\Database::firstVisit();
 
-$user = new \models\classes\User($token);
+$user = new \Models\User($token);
 
-$posts = new \models\classes\Posts($user->id);
+$posts = new \Models\Posts($user->id);
 
 $post = $posts->getPost($postID);
 
-$comments = new \models\classes\Comments($postID);
+$comments = new \Models\Comments($postID);
 
 if(isset($_POST['deleteComment'])) {
     $commentID = $_POST['commentID'];
@@ -27,7 +27,7 @@ if(isset($_POST['deleteComment'])) {
 }
 
 
-\models\classes\Database::closeConn();
+\Models\Database::closeConn();
 ?>
 
 <div class="container">
