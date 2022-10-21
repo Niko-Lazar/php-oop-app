@@ -24,9 +24,6 @@
             <li class="nav-item">
             <a class="nav-link" href="../views/create-post.php">Create post</a>
             </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">page 2</a>
-            </li>
         </ul>
         </div>
     </div>
