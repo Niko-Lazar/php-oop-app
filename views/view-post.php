@@ -6,7 +6,6 @@ require_once '../vendor/autoload.php';
 
 \models\classes\Database::startConn();
 
-
 $postID = $_GET['id'];
 
 $token = \models\classes\Database::firstVisit();
@@ -18,6 +17,15 @@ $posts = new \models\classes\Posts($user->id);
 $post = $posts->getPost($postID);
 
 $comments = new \models\classes\Comments($postID);
+
+if(isset($_POST['deleteComment'])) {
+    $commentID = $_POST['commentID'];
+
+    $result = $comments->deleteComment($commentID);
+
+    header("Location: $_SERVER[PHP_SELF]?id={$postID}");
+}
+
 
 \models\classes\Database::closeConn();
 ?>
@@ -38,7 +46,11 @@ $comments = new \models\classes\Comments($postID);
                     <p class="card-text">
                         <?php foreach($comments->comments as $comment): ?>
 
-                            <?php echo $comment['comment']; ?>
+                            <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                                <?php echo $comment['comment']; ?>
+                                <input type="hidden" name="commentID" value="<?php echo $comment['id']; ?>">
+                                <input type="submit" name="deleteComment" value="delete">
+                            </form>
                             <br>
                             <?php echo $comment['date']; ?>
                             <br>

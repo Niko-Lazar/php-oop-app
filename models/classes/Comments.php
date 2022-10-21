@@ -17,6 +17,14 @@ class Comments
         $this->comments = $result->fetch_all(MYSQLI_ASSOC);
     }
 
+
+    public function deleteComment($commentID) : bool {
+        $stmt = \models\classes\Database::$mysqli->prepare("DELETE FROM comments WHERE id=?");
+        $stmt->bind_param("s", $commentID);
+        $result = $stmt->execute();
+
+        return $result;
+    }
 }
 
 
