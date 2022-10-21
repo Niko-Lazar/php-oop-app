@@ -17,6 +17,8 @@ $posts = new \models\classes\Posts($user->id);
 
 $post = $posts->getPost($postID);
 
+$comments = new \models\classes\Comments($postID);
+
 \models\classes\Database::closeConn();
 ?>
 
@@ -33,7 +35,16 @@ $post = $posts->getPost($postID);
                     </h6>
                     <p class="card-text"> <?php echo $post->description; ?> </p>
                     <hr>
-                    <p class="card-text">comments</p>
+                    <p class="card-text">
+                        <?php foreach($comments->comments as $comment): ?>
+
+                            <?php echo $comment['comment']; ?>
+                            <br>
+                            <?php echo $comment['date']; ?>
+                            <br>
+
+                        <?php endforeach; ?>
+                    </p>
                 </div>
             </div>
         </div>

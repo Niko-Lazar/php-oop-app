@@ -17,18 +17,6 @@ class Comments
         $this->comments = $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function renderComments() {
-        foreach($this->comments as $comment) {
-            echo <<<COMM
-                <form action="" method="POST">
-                    <p>
-                        {$comment['comment']}
-                    </p>
-                </form>
-            COMM;
-        }
-    }
-
 }
 
 
