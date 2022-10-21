@@ -8,7 +8,7 @@ require_once '../vendor/autoload.php';
 
 $postID = $_GET['id'];
 
-$token = \Models\Database::firstVisit();
+$token = \Models\Helper::firstVisit();
 
 $user = new \Models\User($token);
 
