@@ -10,7 +10,7 @@ class Database {
 
         try{
 	
-            Database::$mysqli = new \mysqli($dbhost, $username, $password, $dbname);
+            self::$mysqli = new \mysqli($dbhost, $username, $password, $dbname);
 		
             if( mysqli_connect_errno() ){
                 throw new \Exception("Could not connect to database.");   
@@ -22,7 +22,7 @@ class Database {
     }
 
     public static function closeConn() {
-        Database::$mysqli->close();
+        self::$mysqli->close();
     }
 
     public static function firstVisit() : string {
@@ -32,7 +32,7 @@ class Database {
             $expire=time()+2592000;
             setcookie('token', $token, $expire);
     
-            $stmt = Database::$mysqli->prepare("INSERT INTO users (token) VALUES (?)");
+            $stmt = self::$mysqli->prepare("INSERT INTO users (token) VALUES (?)");
             $stmt->bind_param("s", $token);
             $stmt->execute();
             
