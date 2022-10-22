@@ -21,6 +21,11 @@ if(isset($_POST['deletePost'])) {
     header("Location: $_SERVER[PHP_SELF]");
 }
 
+if(isset($_POST['postComment'])) {
+    $commentContent = $_POST['commentContent'];
+    $postID = $_POST['id'];
+}
+
 \Models\Database::closeConn();
 
 ?>
@@ -42,6 +47,14 @@ if(isset($_POST['deletePost'])) {
                         </h6>
                         <p class="card-text"><?php echo $post['description']; ?></p>
                         <a href="views/view-post.php?id=<?php echo $post['id'] ?>" class="card-link">comments</a>
+                        <br>
+                        <div>
+                            <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                                <textarea name="commentContent"cols="30" rows="5">comment</textarea>
+                                <input type="hidden" name="postID" value="<?php echo $post['id']; ?>">
+                                <input type="submit" name="postComment" value="post comment">
+                            </form>
+                        </div>
                         <br><br>
                         <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                             <input type="hidden" name="postID" value="<?php echo $post['id']; ?>">
