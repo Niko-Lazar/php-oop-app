@@ -41,8 +41,8 @@ if(isset($_POST['deletePost'])) {
                             posted: <?php echo $post['date']; ?>
                         </h6>
                         <p class="card-text"><?php echo $post['description']; ?></p>
-                        <a href="views/view-post.php?id=<?php echo $post['id'] ?>" class="card-link">view post</a>
-                        <a href="#" class="card-link">comments</a>
+                        <a href="views/view-post.php?id=<?php echo $post['id'] ?>" class="card-link">comments</a>
+                        <br><br>
                         <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                             <input type="hidden" name="postID" value="<?php echo $post['id']; ?>">
                             <input type="submit" name="deletePost" value="delete post">
