@@ -23,7 +23,14 @@ if(isset($_POST['deletePost'])) {
 
 if(isset($_POST['postComment'])) {
     $commentContent = $_POST['commentContent'];
-    $postID = $_POST['id'];
+    $postID = $_POST['postID'];
+
+    $createComment = new \Models\Comment();
+    $createComment->comment = $commentContent;
+    $createComment->postID = $postID;
+    $createComment->userID = $user->id;
+
+    $createComment->createComment();
 }
 
 \Models\Database::closeConn();

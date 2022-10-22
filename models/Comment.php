@@ -57,6 +57,14 @@ class Comment
 
         return $result;
     }
+
+    public function createComment() : bool {
+        $stmt = \Models\Database::$mysqli->prepare("INSERT INTO comments (comment, userID, postID) VALUES(?,?,?)");
+        $stmt->bind_param("sss", $this->comment, $this->userID, $this->postID);
+        $result = $stmt->execute();
+
+        return $result;
+    }
 }
 
 
