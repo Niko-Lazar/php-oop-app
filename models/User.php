@@ -27,6 +27,16 @@ class User
         $this->$token = $token;
     }
 
+    public function createUser($name, $lastName, $token) : bool {
+        $stmt = Database::$mysqli->prepare("UPDATE users SET name=?, lastName=? WHERE token=?");
+        $stmt->bind_param("sss", $name, $lastName, $token);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result;
+    }
+
 }
 
 

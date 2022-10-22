@@ -12,6 +12,15 @@ $post = new \Models\Post();
 
 $posts = $post->getAllPosts($user->id);
 
+
+if(isset($_POST['deletePost'])) {
+    $postID = $_POST['postID'];
+    $postToDelete = new \Models\Post($postID);
+    $postToDelete->deletePost();
+
+    header("Location: $_SERVER[PHP_SELF]");
+}
+
 \Models\Database::closeConn();
 
 ?>
@@ -34,6 +43,10 @@ $posts = $post->getAllPosts($user->id);
                         <p class="card-text"><?php echo $post['description']; ?></p>
                         <a href="views/view-post.php?id=<?php echo $post['id'] ?>" class="card-link">view post</a>
                         <a href="#" class="card-link">comments</a>
+                        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                            <input type="hidden" name="postID" value="<?php echo $post['id']; ?>">
+                            <input type="submit" name="deletePost" value="delete post">
+                        </form>
                     </div>
                 </div>
             </div>

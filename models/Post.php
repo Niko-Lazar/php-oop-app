@@ -34,7 +34,7 @@ class Post
         }
     }
 
-     public function getAllPosts($userID) : array {
+    public function getAllPosts($userID) : array {
         $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM posts WHERE userID=?");
         $stmt->bind_param("s", $userID);
         $stmt->execute();
@@ -48,6 +48,30 @@ class Post
         $posts = $result->fetch_all(MYSQLI_ASSOC);
 
         return $posts;
+    }
+
+    public function createPost($title, $description, $userID) : bool {
+        $stmt = Database::$mysqli->prepare("INSERT INTO posts (title, description, userID) VALUES (?,?,?)");
+        $stmt->bind_param("sss", $title, $description, $userID);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result;
+    }
+
+    public function deletePost() : bool {
+        if($this->id == ''){
+            return false;
+        }
+        
+        $stmt = Database::$mysqli->prepare("DELETE FROM posts WHERE id=?");
+        $stmt->bind_param("s", $this->id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result;
     }
 }
 
