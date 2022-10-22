@@ -12,16 +12,16 @@ $token = \Models\Helper::firstVisit();
 
 $user = new \Models\User($token);
 
-#$posts = new \Models\Posts($user->id);
+$post = new \Models\Post($postID);
 
-$post = $posts->getPost($postID);
+$comment = new \Models\Comment($postID);
 
-#$comments = new \Models\Comments($postID);
+$comments = $comment->getAllComments($postID);
 
 if(isset($_POST['deleteComment'])) {
     $commentID = $_POST['commentID'];
 
-    $result = $comments->deleteComment($commentID);
+    $result = $comment->deleteComment($commentID);
 
     header("Location: $_SERVER[PHP_SELF]?id={$postID}");
 }
@@ -44,7 +44,7 @@ if(isset($_POST['deleteComment'])) {
                     <p class="card-text"> <?php echo $post->description; ?> </p>
                     <hr>
                     <p class="card-text">
-                        <?php foreach($comments->comments as $comment): ?>
+                        <?php foreach($comments as $comment): ?>
 
                             <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                                 <?php echo $comment['comment']; ?>
