@@ -14,7 +14,7 @@ $user = new \Models\User($token);
 
 $post = new \Models\Post($postID);
 
-$comment = new \Models\Comment($postID);
+$comment = new \Models\Comment();
 
 $comments = $comment->getAllComments($postID);
 
