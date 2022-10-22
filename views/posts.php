@@ -50,7 +50,7 @@ if(isset($_POST['postComment'])) {
                         <br>
                         <div>
                             <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                                <textarea name="commentContent"cols="30" rows="5">comment</textarea>
+                                <textarea name="commentContent"cols="30" rows="2">comment</textarea>
                                 <input type="hidden" name="postID" value="<?php echo $post['id']; ?>">
                                 <input type="submit" name="postComment" value="post comment">
                             </form>
