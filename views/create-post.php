@@ -17,6 +17,8 @@ if(isset($_POST['submit'])) {
 
     $user->createUser($name, $lastName, $token);
     $post->createPost($title, $description, $user->id);
+
+    header("Location: /index.php");
 }
 
 
