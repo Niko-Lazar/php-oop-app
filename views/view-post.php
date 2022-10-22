@@ -16,7 +16,7 @@ $user = new \Models\User($token);
 
 $post = $posts->getPost($postID);
 
-$comments = new \Models\Comments($postID);
+#$comments = new \Models\Comments($postID);
 
 if(isset($_POST['deleteComment'])) {
     $commentID = $_POST['commentID'];
