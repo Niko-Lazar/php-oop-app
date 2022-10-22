@@ -12,7 +12,7 @@ $token = \Models\Helper::firstVisit();
 
 $user = new \Models\User($token);
 
-$posts = new \Models\Posts($user->id);
+#$posts = new \Models\Posts($user->id);
 
 $post = $posts->getPost($postID);
 

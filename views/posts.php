@@ -8,7 +8,9 @@ $token = \Models\Helper::firstVisit();
 
 $user = new \Models\User($token);
 
-$posts = new \Models\Posts($user->id);
+$post = new \Models\Post();
+
+$posts = $post->getAllPosts($user->id);
 
 \Models\Database::closeConn();
 
@@ -18,7 +20,7 @@ $posts = new \Models\Posts($user->id);
 <div class="container">
     <div class="row">
 
-        <?php foreach($posts->posts as $post): ?>
+        <?php foreach($posts as $post): ?>
 
             <div class="col-12">
                 <div class="card" style="width: 18rem;">
@@ -30,7 +32,7 @@ $posts = new \Models\Posts($user->id);
                             posted: <?php echo $post['date']; ?>
                         </h6>
                         <p class="card-text"><?php echo $post['description']; ?></p>
-                        <a href="views/view-post.php?id=<?php echo $post['id']; ?>" class="card-link">view post</a>
+                        <a href="views/view-post.php?id=<?php echo $post['id'] ?>" class="card-link">view post</a>
                         <a href="#" class="card-link">comments</a>
                     </div>
                 </div>
