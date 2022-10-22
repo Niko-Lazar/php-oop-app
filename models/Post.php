@@ -8,6 +8,8 @@ class Post
     public string $title = '';
     public string $description = '';
     public string $date = '';
+    public string $userID = '';
+
 
     public function __construct($postID = null)
     {
@@ -28,6 +30,7 @@ class Post
             $this->title = $data->title;
             $this->description = $data->description;
             $this->date = $data->date;
+            $this->userID = $data->userID;
         }
     }
 
