@@ -12,7 +12,6 @@ $post = new \Models\Post();
 
 $posts = $post->getAllPosts($user->id);
 
-
 if(isset($_POST['deletePost'])) {
     $postID = $_POST['postID'];
     $postToDelete = new \Models\Post($postID);
@@ -33,33 +32,42 @@ if(isset($_POST['postComment'])) {
     $createComment->createComment();
 }
 
+
 \Models\Database::closeConn();
+
 
 ?>
 <?php require_once 'includes/header.php' ?>
+
 
 <div class="container">
     <div class="row">
 
         <?php foreach($posts as $post): ?>
 
-            <div class="col-12">
-                <div class="card" style="width: 18rem;">
+            <div class="col-12 mt-3">
+                <div class="card" style="width: 24rem;">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $post['title']; ?></h5>
+                        <h5 class="card-title">
+                            <span class="text-muted">title: </span>
+                            <?php echo $post['title']; ?>
+                        </h5>
                         <h6 class="card-subtitle mb-2 text-muted">
                             By: <?php echo $user->name . " " . $user->lastName; ?>
                             <br>
                             posted: <?php echo $post['date']; ?>
                         </h6>
+                        <hr>
                         <p class="card-text"><?php echo $post['description']; ?></p>
-                        <a href="views/view-post.php?id=<?php echo $post['id'] ?>" class="card-link">comments</a>
+                        <hr>
                         <br>
+                        <a href="views/view-post.php?id=<?php echo $post['id'] ?>" class="card-link">comments</a>
                         <div>
                             <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                                <textarea name="commentContent"cols="30" rows="2">comment</textarea>
+                                <textarea name="commentContent"cols="40" rows="2">your comment</textarea>
                                 <input type="hidden" name="postID" value="<?php echo $post['id']; ?>">
-                                <input type="submit" name="postComment" value="post comment">
+                                <br>
+                                <input type="submit" name="postComment" value="comment">
                             </form>
                         </div>
                         <br><br>
