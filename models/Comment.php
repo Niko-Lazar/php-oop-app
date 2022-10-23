@@ -10,7 +10,7 @@ class Comment
     public string $userID = '';
     public string $postID = '';
 
-    public function __construct($commentID = null)
+    public function __construct(string $commentID = null)
     {
         if($commentID != null) {
             $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM comments WHERE id=?");
@@ -33,7 +33,7 @@ class Comment
         }
     }
 
-    public function getAllComments($postID) : array {
+    public function getAllComments(string $postID) : array {
         $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM comments WHERE postID=?");
         $stmt->bind_param("s", $postID);
         $stmt->execute();
@@ -50,7 +50,7 @@ class Comment
     }
 
 
-    public function deleteComment($commentID) : bool {
+    public function deleteComment(string $commentID) : bool {
         $stmt = \Models\Database::$mysqli->prepare("DELETE FROM comments WHERE id=?");
         $stmt->bind_param("s", $commentID);
         $result = $stmt->execute();

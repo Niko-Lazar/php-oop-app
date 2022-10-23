@@ -11,7 +11,7 @@ class Post
     public string $userID = '';
 
 
-    public function __construct($postID = null)
+    public function __construct(string $postID = null)
     {
         if($postID != null) {
             $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM posts WHERE id=?");
@@ -34,7 +34,7 @@ class Post
         }
     }
 
-    public function getAllPosts($userID) : array {
+    public function getAllPosts(string $userID) : array {
         $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM posts WHERE userID=?");
         $stmt->bind_param("s", $userID);
         $stmt->execute();
@@ -50,7 +50,7 @@ class Post
         return $posts;
     }
 
-    public function createPost($title, $description, $userID) : bool {
+    public function createPost(string $title, string $description, string $userID) : bool {
         $stmt = Database::$mysqli->prepare("INSERT INTO posts (title, description, userID) VALUES (?,?,?)");
         $stmt->bind_param("sss", $title, $description, $userID);
         $stmt->execute();

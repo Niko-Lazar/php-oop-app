@@ -10,7 +10,7 @@ class User
     public string $date = '';
     public string $token = '';
 
-    public function __construct($token)
+    public function __construct(string $token)
     {
         $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM users WHERE token=?");
         $stmt->bind_param("s", $token);
@@ -27,7 +27,7 @@ class User
         $this->$token = $token;
     }
 
-    public function createUser($name, $lastName, $token) : bool {
+    public function createUser(string $name, string $lastName, string $token) : bool {
         $stmt = Database::$mysqli->prepare("UPDATE users SET name=?, lastName=? WHERE token=?");
         $stmt->bind_param("sss", $name, $lastName, $token);
         $stmt->execute();
