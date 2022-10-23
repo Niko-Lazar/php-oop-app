@@ -50,7 +50,7 @@ class Post
         $objectArray = [];
 
         foreach($posts as $post) {
-            $objectArray[] = \Models\Helper::arrToObj($post);
+            $objectArray[] = \Helpers\Helper::arrToObj($post);
         }
 
         return $objectArray;

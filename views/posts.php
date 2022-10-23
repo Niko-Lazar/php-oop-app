@@ -4,7 +4,7 @@ require_once 'vendor/autoload.php';
 
 \Models\Database::startConn();
 
-$token = \Models\Helper::firstVisit();
+$token = \Helpers\Helper::firstVisit();
 
 $user = new \Models\User($token);
 

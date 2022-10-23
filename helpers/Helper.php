@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Helpers;
 
 class Helper
 {
@@ -11,7 +11,7 @@ class Helper
             $expire=time()+2592000;
             setcookie('token', $token, $expire);
     
-            $stmt = Database::$mysqli->prepare("INSERT INTO users (token) VALUES (?)");
+            $stmt = \Models\Database::$mysqli->prepare("INSERT INTO users (token) VALUES (?)");
             $stmt->bind_param("s", $token);
             $stmt->execute();
             

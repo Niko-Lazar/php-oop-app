@@ -49,7 +49,7 @@ class Comment
         $objectArray = [];
 
         foreach($comments as $comment){
-            $objectArray[] = \Models\Helper::arrToObj($comment);
+            $objectArray[] = \Helpers\Helper::arrToObj($comment);
         }
 
         return $objectArray;
