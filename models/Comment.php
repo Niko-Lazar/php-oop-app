@@ -46,7 +46,13 @@ class Comment
 
         $comments = $result->fetch_all(MYSQLI_ASSOC);
 
-        return $comments;
+        $objectArray = [];
+
+        foreach($comments as $comment){
+            $objectArray[] = \Models\Helper::arrToObj($comment);
+        }
+
+        return $objectArray;
     }
 
 

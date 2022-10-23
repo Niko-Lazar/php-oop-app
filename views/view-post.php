@@ -52,13 +52,13 @@ if(isset($_POST['deleteComment'])) {
                         <?php foreach($comments as $comment): ?>
 
                             <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                                <?php echo $comment['comment']; ?>
-                                <input type="hidden" name="commentID" value="<?php echo $comment['id']; ?>">
+                                <?php echo $comment->comment; ?>
+                                <input type="hidden" name="commentID" value="<?php echo $comment->id; ?>">
                                 -><input type="submit" name="deleteComment" value="delete">
                             </form>
                             <br>
                             <hr>
-                            commented: <?php echo $comment['date']; ?>
+                            commented: <?php echo $comment->date; ?>
                             <br>
                             <hr>
                         <?php endforeach; ?>

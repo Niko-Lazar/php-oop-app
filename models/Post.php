@@ -46,8 +46,14 @@ class Post
         }
 
         $posts = $result->fetch_all(MYSQLI_ASSOC);
+        
+        $objectArray = [];
 
-        return $posts;
+        foreach($posts as $post) {
+            $objectArray[] = \Models\Helper::arrToObj($post);
+        }
+
+        return $objectArray;
     }
 
     public function createPost(string $title, string $description, string $userID) : bool {

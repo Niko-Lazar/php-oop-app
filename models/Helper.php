@@ -20,6 +20,10 @@ class Helper
         
        return $_COOKIE['token'];
     }
+
+    public static function arrToObj(array $arr) : object {
+        return json_decode(json_encode($arr), FALSE);
+    }
 }
 
 ?>
