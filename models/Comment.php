@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Comment
+class Comment extends \Helpers\CRUD
 {
     public string $id = '';
     public string $comment = '';
@@ -13,13 +13,8 @@ class Comment
     public function __construct(string $commentID = null)
     {
         if($commentID != null) {
-            $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM comments WHERE id=?");
-            $stmt->bind_param("s", $commentID);
-            $stmt->execute();
 
-            $result = $stmt->get_result();
-
-            $data = $result->fetch_object();
+            $data = self::readRow('comments', 'id', $commentID, 's');
 
             if(!$data) {
                 return var_dump($data);
@@ -34,17 +29,8 @@ class Comment
     }
 
     public function getAllComments(string $postID) : array {
-        $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM comments WHERE postID=?");
-        $stmt->bind_param("s", $postID);
-        $stmt->execute();
 
-        $result = $stmt->get_result();
-
-        if(!$result) {
-            return [];
-        }
-
-        $comments = $result->fetch_all(MYSQLI_ASSOC);
+        $comments = self::readAll('comments', 'postID', $postID, 's');
 
         $objectArray = [];
 
@@ -57,17 +43,15 @@ class Comment
 
 
     public function deleteComment(string $commentID) : bool {
-        $stmt = \Models\Database::$mysqli->prepare("DELETE FROM comments WHERE id=?");
-        $stmt->bind_param("s", $commentID);
-        $result = $stmt->execute();
+
+        $result = self::delete('comments', $commentID);
 
         return $result;
     }
 
     public function createComment() : bool {
-        $stmt = \Models\Database::$mysqli->prepare("INSERT INTO comments (comment, userID, postID) VALUES(?,?,?)");
-        $stmt->bind_param("sss", $this->comment, $this->userID, $this->postID);
-        $result = $stmt->execute();
+
+        $result = self::create('comments', ['comment', 'userID', 'postID'], [$this->comment, $this->userID, $this->postID], 'sss');
 
         return $result;
     }

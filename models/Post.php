@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Post
+class Post extends \Helpers\CRUD
 {
     public string $id = '';
     public string $title = '';
@@ -14,13 +14,8 @@ class Post
     public function __construct(string $postID = null)
     {
         if($postID != null) {
-            $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM posts WHERE id=?");
-            $stmt->bind_param("s", $postID);
-            $stmt->execute();
 
-            $result = $stmt->get_result();
-
-            $data = $result->fetch_object();
+            $data = self::readRow('posts', 'id', $postID, 's');
 
             if(!$data) {
                 return var_dump($data);
@@ -35,33 +30,25 @@ class Post
     }
 
     public function getAllPosts(string $userID) : array {
-        $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM posts WHERE userID=?");
-        $stmt->bind_param("s", $userID);
-        $stmt->execute();
 
-        $result = $stmt->get_result();
+        $result = self::readAll("posts", 'userID', $userID, 's');
 
-        if(!$result) {
+        if(empty($result)) {
             return [];
         }
-
-        $posts = $result->fetch_all(MYSQLI_ASSOC);
         
         $objectArray = [];
 
-        foreach($posts as $post) {
-            $objectArray[] = \Helpers\Helper::arrToObj($post);
+        foreach($result as $rez) {
+            $objectArray[] = \Helpers\Helper::arrToObj($rez);
         }
 
         return $objectArray;
     }
 
     public function createPost(string $title, string $description, string $userID) : bool {
-        $stmt = Database::$mysqli->prepare("INSERT INTO posts (title, description, userID) VALUES (?,?,?)");
-        $stmt->bind_param("sss", $title, $description, $userID);
-        $stmt->execute();
 
-        $result = $stmt->get_result();
+        $result = self::create('posts', ['title', 'description', 'userID'], [$title, $description, $userID], 'sss');
 
         return $result;
     }
@@ -70,13 +57,8 @@ class Post
         if($this->id == ''){
             return false;
         }
-        
-        $stmt = Database::$mysqli->prepare("DELETE FROM posts WHERE id=?");
-        $stmt->bind_param("s", $this->id);
-        $stmt->execute();
 
-        $result = $stmt->get_result();
-
+        $result = self::delete('posts', $this->id);
         return $result;
     }
 }

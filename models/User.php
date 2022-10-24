@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class User
+class User extends \Helpers\CRUD
 {
     public string $id = '';
     public string $name = '';
@@ -12,27 +12,18 @@ class User
 
     public function __construct(string $token)
     {
-        $stmt = \Models\Database::$mysqli->prepare("SELECT * FROM users WHERE token=?");
-        $stmt->bind_param("s", $token);
-        $stmt->execute();
 
-        $result = $stmt->get_result();
-
-        $data = $result->fetch_array(MYSQLI_ASSOC);
-
-        $this->id = $data['id'];
-        $this->name = $data['name'];
-        $this->lastName = $data['lastName'];
-        $this->date = $data['date'];
-        $this->$token = $token;
+        $data = self::readRow('users', 'token', $token, 's');
+        $this->id = $data->id;
+        $this->name = $data->name;
+        $this->lastName = $data->lastName;
+        $this->date = $data->date;
+        $this->$token = $data->token;
     }
 
     public function createUser(string $name, string $lastName, string $token) : bool {
-        $stmt = Database::$mysqli->prepare("UPDATE users SET name=?, lastName=? WHERE token=?");
-        $stmt->bind_param("sss", $name, $lastName, $token);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
+  
+        $result = self::update('users', ['name', 'lastName'], [$name, $lastName, $token], 'token', 'sss');
 
         return $result;
     }
