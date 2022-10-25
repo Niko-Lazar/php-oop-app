@@ -12,8 +12,9 @@ class User extends \Helpers\CRUD
 
     public function __construct(string $token)
     {
+        $this->tableName = 'users';
 
-        $data = self::readRow('users', 'token', $token, 's');
+        $data = self::readRow('token', $token, 's');
         $this->id = $data->id;
         $this->name = $data->name;
         $this->lastName = $data->lastName;
@@ -23,7 +24,7 @@ class User extends \Helpers\CRUD
 
     public function createUser(string $name, string $lastName, string $token) : bool {
   
-        $result = self::update('users', ['name', 'lastName'], [$name, $lastName, $token], 'token', 'sss');
+        $result = self::update(['name', 'lastName'], [$name, $lastName, $token], 'token', 'sss');
 
         return $result;
     }

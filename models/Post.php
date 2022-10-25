@@ -13,9 +13,10 @@ class Post extends \Helpers\CRUD
 
     public function __construct(string $postID = null)
     {
+        $this->tableName = 'posts';
         if($postID != null) {
 
-            $data = self::readRow('posts', 'id', $postID, 's');
+            $data = self::readRow('id', $postID, 's');
 
             if(!$data) {
                 return var_dump($data);
@@ -31,7 +32,7 @@ class Post extends \Helpers\CRUD
 
     public function getAllPosts(string $userID) : array {
 
-        $result = self::readAll("posts", 'userID', $userID, 's');
+        $result = self::readAll('userID', $userID, 's');
 
         if(empty($result)) {
             return [];
@@ -48,7 +49,7 @@ class Post extends \Helpers\CRUD
 
     public function createPost(string $title, string $description, string $userID) : bool {
 
-        $result = self::create('posts', ['title', 'description', 'userID'], [$title, $description, $userID], 'sss');
+        $result = self::create(['title', 'description', 'userID'], [$title, $description, $userID], 'sss');
 
         return $result;
     }
@@ -58,7 +59,7 @@ class Post extends \Helpers\CRUD
             return false;
         }
 
-        $result = self::delete('posts', $this->id);
+        $result = self::delete($this->id);
         return $result;
     }
 }

@@ -23,7 +23,7 @@ if(isset($_POST['deleteComment'])) {
 
     $result = $comment->deleteComment($commentID);
 
-    header("Location: $_SERVER[PHP_SELF]?id={$postID}");
+    header("Location: $_SERVER[PHP_SELF]?id={$post->id}");
 }
 
 

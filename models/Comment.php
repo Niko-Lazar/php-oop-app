@@ -12,9 +12,11 @@ class Comment extends \Helpers\CRUD
 
     public function __construct(string $commentID = null)
     {
+        $this->tableName = 'comments';
+        
         if($commentID != null) {
 
-            $data = self::readRow('comments', 'id', $commentID, 's');
+            $data = self::readRow('id', $commentID, 's');
 
             if(!$data) {
                 return var_dump($data);
@@ -30,7 +32,7 @@ class Comment extends \Helpers\CRUD
 
     public function getAllComments(string $postID) : array {
 
-        $comments = self::readAll('comments', 'postID', $postID, 's');
+        $comments = self::readAll('postID', $postID, 's');
 
         $objectArray = [];
 
@@ -44,14 +46,14 @@ class Comment extends \Helpers\CRUD
 
     public function deleteComment(string $commentID) : bool {
 
-        $result = self::delete('comments', $commentID);
+        $result = self::delete($commentID);
 
         return $result;
     }
 
     public function createComment() : bool {
 
-        $result = self::create('comments', ['comment', 'userID', 'postID'], [$this->comment, $this->userID, $this->postID], 'sss');
+        $result = self::create(['comment', 'userID', 'postID'], [$this->comment, $this->userID, $this->postID], 'sss');
 
         return $result;
     }
