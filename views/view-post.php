@@ -16,7 +16,7 @@ $post = new \Models\Post($postID);
 
 $comment = new \Models\Comment();
 
-$comments = $comment->getAllComments($postID);
+$post->comments = $comment->getAllComments($post->id);
 
 if(isset($_POST['deleteComment'])) {
     $commentID = $_POST['commentID'];
@@ -49,7 +49,7 @@ if(isset($_POST['deleteComment'])) {
                     <p class="card-text"> <?php echo $post->description; ?> </p>
                     <hr>
                     <p class="card-text">
-                        <?php foreach($comments as $comment): ?>
+                        <?php foreach($post->comments as $comment): ?>
 
                             <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                                 <?php echo $comment->comment; ?>

@@ -9,7 +9,7 @@ class Post extends \Helpers\CRUD
     public string $description = '';
     public string $date = '';
     public string $userID = '';
-
+    public array $comments = [];
 
     public function __construct(string $postID = null)
     {
