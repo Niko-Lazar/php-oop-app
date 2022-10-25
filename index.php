@@ -1,1 +1,1 @@
-<?php require_once 'views/posts.php' ?>
+<?php header("Location: views/posts.php"); ?>

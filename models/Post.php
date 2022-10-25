@@ -14,6 +14,7 @@ class Post extends \Helpers\CRUD
     public function __construct(string $postID = null)
     {
         $this->tableName = 'posts';
+        
         if($postID != null) {
 
             $data = self::readRow('id', $postID, 's');

@@ -26,8 +26,6 @@ if(isset($_POST['deleteComment'])) {
     header("Location: $_SERVER[PHP_SELF]?id={$post->id}");
 }
 
-
-\Models\Database::closeConn();
 ?>
 
 <div class="container">
@@ -68,6 +66,5 @@ if(isset($_POST['deleteComment'])) {
         </div>
     </div>
 </div>
-
 
 <?php require_once 'includes/footer.php' ?>

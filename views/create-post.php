@@ -1,8 +1,6 @@
+<?php require_once 'includes/header.php' ?>
+
 <?php
-
-require_once '../vendor/autoload.php';
-
-\Models\Database::startConn();
 
 $token = \Helpers\Helper::firstVisit();
 
@@ -21,13 +19,7 @@ if(isset($_POST['submit'])) {
     header("Location: /index.php");
 }
 
-
-
-\Models\Database::closeConn();
 ?>
-
-
-<?php require_once 'includes/header.php' ?>
 
 <div class="container">
     <div class="row">

@@ -1,3 +1,11 @@
+<?php
+
+require_once '../vendor/autoload.php';
+
+\Models\Database::startConn();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

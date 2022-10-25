@@ -1,8 +1,6 @@
+<?php require_once 'includes/header.php' ?>
+
 <?php
-
-require_once 'vendor/autoload.php';
-
-\Models\Database::startConn();
 
 $token = \Helpers\Helper::firstVisit();
 
@@ -32,13 +30,7 @@ if(isset($_POST['postComment'])) {
     $createComment->createComment();
 }
 
-
-\Models\Database::closeConn();
-
-
 ?>
-<?php require_once 'includes/header.php' ?>
-
 
 <div class="container">
     <div class="row">
@@ -61,7 +53,7 @@ if(isset($_POST['postComment'])) {
                         <p class="card-text"><?php echo $post->description; ?></p>
                         <hr>
                         <br>
-                        <a href="views/view-post.php?id=<?php echo $post->id ?>" class="card-link">comments</a>
+                        <a href="view-post.php?id=<?php echo $post->id ?>" class="card-link">comments</a>
                         <div>
                             <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                                 <textarea name="commentContent"cols="40" rows="2">your comment</textarea>
@@ -83,7 +75,5 @@ if(isset($_POST['postComment'])) {
 
     </div>
 </div>
-
-
 
 <?php require_once 'includes/footer.php' ?>
