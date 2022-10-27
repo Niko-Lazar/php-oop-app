@@ -2,7 +2,10 @@
 
 namespace Models;
 
-class Comment extends \Helpers\CRUD
+use \Helpers\Helper;
+use \Helpers\CRUD;
+
+class Comment extends CRUD
 {
     public string $id = '';
     public string $comment = '';
@@ -37,7 +40,7 @@ class Comment extends \Helpers\CRUD
         $objectArray = [];
 
         foreach($comments as $comment){
-            $objectArray[] = \Helpers\Helper::arrToObj($comment);
+            $objectArray[] = Helper::arrToObj($comment);
         }
 
         return $objectArray;
