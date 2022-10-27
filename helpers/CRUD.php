@@ -9,16 +9,7 @@ class CRUD {
     public function create(array $valueNames, array $values, string $types) : bool {
     
         $valueNames = implode(',', $valueNames);
-        $placeHolders = '';
-
-        for($i=0;$i<sizeof($values); $i++){
-            $placeHolders .= '?';
-
-            if($i == sizeof($values)-1){
-                break;
-            }
-            $placeHolders .= ',';
-        }
+        $placeHolders = implode(',', array_map(fn() => $temp[] = "?", $values));
 
         $sql = "INSERT INTO $this->tableName ($valueNames) VALUES ($placeHolders)";
 
