@@ -2,7 +2,10 @@
 
 namespace Models;
 
-class Post extends \Helpers\CRUD
+use \Helpers\CRUD;
+use \Helpers\Helper;
+
+class Post extends CRUD
 {
     public string $id = '';
     public string $title = '';
@@ -42,7 +45,7 @@ class Post extends \Helpers\CRUD
         $objectArray = [];
 
         foreach($result as $rez) {
-            $objectArray[] = \Helpers\Helper::arrToObj($rez);
+            $objectArray[] = Helper::arrToObj($rez);
         }
 
         return $objectArray;
