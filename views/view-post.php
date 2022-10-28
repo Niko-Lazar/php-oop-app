@@ -1,32 +1,5 @@
 <?php require_once 'includes/header.php' ?>
-
-<?php
-
-require_once '../vendor/autoload.php';
-
-\Models\Database::startConn();
-
-$postID = $_GET['id'];
-
-$token = \Helpers\Helper::firstVisit();
-
-$user = new \Models\User($token);
-
-$post = new \Models\Post($postID);
-
-$comment = new \Models\Comment();
-
-$post->comments = $comment->getAllComments($post->id);
-
-if(isset($_POST['deleteComment'])) {
-    $commentID = $_POST['commentID'];
-
-    $result = $comment->deleteComment($commentID);
-
-    header("Location: $_SERVER[PHP_SELF]?id={$post->id}");
-}
-
-?>
+<?php require_once '../controller/viewPost.php' ?>
 
 <div class="container">
     <div class="row">
