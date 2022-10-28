@@ -1,6 +1,5 @@
 <?php
 
-use \Models\Database;
 use \Helpers\Helper;
 use \Models\User;
 use \Models\Post;
