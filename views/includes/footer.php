@@ -3,8 +3,4 @@
 </body>
 </html>
 
-<?php
-
-\Models\Database::closeConn();
-
-?>
+<?php \Models\Database::closeConn(); ?>

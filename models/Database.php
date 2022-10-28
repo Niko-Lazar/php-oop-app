@@ -25,5 +25,3 @@ class Database {
         self::$mysqli->close();
     }
 }
-
-?>

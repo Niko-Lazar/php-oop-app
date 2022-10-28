@@ -46,7 +46,6 @@ class Comment extends Model
         return $objectArray;
     }
 
-
     public function deleteComment(string $commentID) : bool {
 
         $result = self::delete($commentID);
@@ -61,6 +60,3 @@ class Comment extends Model
         return $result;
     }
 }
-
-
-?>

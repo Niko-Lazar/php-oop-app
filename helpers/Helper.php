@@ -25,5 +25,3 @@ class Helper
         return json_decode(json_encode($arr), FALSE);
     }
 }
-
-?>

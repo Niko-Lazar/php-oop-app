@@ -32,6 +32,3 @@ class User extends Model
     }
 
 }
-
-
-?>
