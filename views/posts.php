@@ -1,36 +1,5 @@
 <?php require_once 'includes/header.php' ?>
-
-<?php
-
-$token = \Helpers\Helper::firstVisit();
-
-$user = new \Models\User($token);
-
-$post = new \Models\Post();
-
-$posts = $post->getAllPosts($user->id);
-
-if(isset($_POST['deletePost'])) {
-    $postID = $_POST['postID'];
-    $postToDelete = new \Models\Post($postID);
-    $postToDelete->deletePost();
-
-    header("Location: $_SERVER[PHP_SELF]");
-}
-
-if(isset($_POST['postComment'])) {
-    $commentContent = $_POST['commentContent'];
-    $postID = $_POST['postID'];
-
-    $createComment = new \Models\Comment();
-    $createComment->comment = $commentContent;
-    $createComment->postID = $postID;
-    $createComment->userID = $user->id;
-
-    $createComment->createComment();
-}
-
-?>
+<?php require_once '../controller/posts.php' ?>
 
 <div class="container">
     <div class="row">
