@@ -15,12 +15,16 @@ $post = new Post($postID);
 
 $comment = new Comment();
 
-$post->comments = $comment->getAllComments($post->id);
+$post->comments = Helper::objectsArray($comment->readAll('postID', $post->id, 's'));
 
 if(isset($_POST['deleteComment'])) {
     $commentID = $_POST['commentID'];
 
-    $result = $comment->deleteComment($commentID);
+    $result = $comment->delete($commentID);
+
+    if(!$result) {
+        return;
+    }
 
     header("Location: $_SERVER[PHP_SELF]?id={$post->id}");
 }

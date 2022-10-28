@@ -32,31 +32,4 @@ class Comment extends Model
             $this->postID = $data->postID;
         }
     }
-
-    public function getAllComments(string $postID) : array {
-
-        $comments = self::readAll('postID', $postID, 's');
-
-        $objectArray = [];
-
-        foreach($comments as $comment){
-            $objectArray[] = Helper::arrToObj($comment);
-        }
-
-        return $objectArray;
-    }
-
-    public function deleteComment(string $commentID) : bool {
-
-        $result = self::delete($commentID);
-
-        return $result;
-    }
-
-    public function createComment() : bool {
-
-        $result = self::create(['comment', 'userID', 'postID'], [$this->comment, $this->userID, $this->postID], 'sss');
-
-        return $result;
-    }
 }

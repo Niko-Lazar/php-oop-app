@@ -20,8 +20,9 @@ if(isset($_POST['submit'])) {
     $title = $_POST['title'];
     $description = $_POST['description'];
 
-    $user->createUser($name, $lastName, $token);
-    $post->createPost($title, $description, $user->id);
+
+    $user->update(['name', 'lastName'], [$name, $lastName, $token], 'token', 'sss');
+    $post->create(['title', 'description', 'userID'], [$title, $description, $user->id], 'sss');
 
     header("Location: /index.php");
 }

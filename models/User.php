@@ -17,18 +17,11 @@ class User extends Model
         $this->tableName = 'users';
 
         $data = self::readRow('token', $token, 's');
+        
         $this->id = $data->id;
         $this->name = $data->name;
         $this->lastName = $data->lastName;
         $this->date = $data->date;
         $this->$token = $data->token;
     }
-
-    public function createUser(string $name, string $lastName, string $token) : bool {
-  
-        $result = self::update(['name', 'lastName'], [$name, $lastName, $token], 'token', 'sss');
-
-        return $result;
-    }
-
 }
