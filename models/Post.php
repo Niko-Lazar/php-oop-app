@@ -2,10 +2,10 @@
 
 namespace Models;
 
-use \Helpers\CRUD;
+use \Helpers\Model;
 use \Helpers\Helper;
 
-class Post extends CRUD
+class Post extends Model
 {
     public string $id = '';
     public string $title = '';

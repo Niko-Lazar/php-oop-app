@@ -3,9 +3,9 @@
 namespace Models;
 
 use \Helpers\Helper;
-use \Helpers\CRUD;
+use \Helpers\Model;
 
-class Comment extends CRUD
+class Comment extends Model
 {
     public string $id = '';
     public string $comment = '';

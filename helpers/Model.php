@@ -4,7 +4,7 @@ namespace Helpers;
 
 use \Models\Database;
 
-class CRUD {
+class Model {
 
     public string $tableName;
 

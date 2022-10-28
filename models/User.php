@@ -2,9 +2,9 @@
 
 namespace Models;
 
-use \Helpers\CRUD;
+use \Helpers\Model;
 
-class User extends CRUD
+class User extends Model
 {
     public string $id = '';
     public string $name = '';
