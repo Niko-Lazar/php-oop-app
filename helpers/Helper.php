@@ -24,4 +24,14 @@ class Helper
     public static function arrToObj(array $arr) : object {
         return json_decode(json_encode($arr), FALSE);
     }
+
+    public static function objectsArray(array $arr) : array {
+        $objectsArray = [];
+
+        foreach($arr as $element) {
+            $objectsArray[] = self::arrToObj($element);
+        }
+        
+        return $objectsArray;
+    }
 }
